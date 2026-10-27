@@ -71,6 +71,7 @@
   max-height: 840px;
   margin: auto;
   transform-style: preserve-3d;
+  perspective: 1400px;
   z-index: 10;
   will-change: transform, opacity;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 50px rgba(201, 168, 76, 0.15);
@@ -93,45 +94,79 @@
   justify-content: center;
   background: radial-gradient(ellipse at center, #350b0e 0%, #1c0507 65%, #0d0203 100%);
   z-index: 4;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .curved-glimpse-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1.8rem 3rem;
+  gap: 0.35rem;
+  padding: 1.8rem 2.5rem;
   background: radial-gradient(ellipse at top, #FFFDF8 0%, #F5EDE0 65%, #EBDBC1 100%);
-  border: 1px solid rgba(201, 168, 76, 0.5);
-  border-radius: 6px;
+  border: 1px solid rgba(201, 168, 76, 0.55);
+  border-radius: 8px;
   box-shadow:
     0 15px 45px rgba(0, 0, 0, 0.6),
-    inset 0 0 30px rgba(201, 168, 76, 0.08);
-  opacity: 0.85;
+    inset 0 0 30px rgba(201, 168, 76, 0.1);
+  will-change: transform;
+  transform-style: preserve-3d;
+  text-align: center;
+  max-width: 85%;
+}
+
+.curved-glimpse-bismillah {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  font-size: 1.15rem;
+  color: #B38F3B;
+  letter-spacing: 0.05em;
+  direction: rtl;
+  margin-bottom: 0.1rem;
 }
 
 .curved-glimpse-ornament {
   color: #C9A84C;
-  font-size: 0.9rem;
-  letter-spacing: 0.4em;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
 }
 
-.curved-glimpse-title {
+.curved-glimpse-subtitle {
   font-family: 'Cinzel', 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(1.1rem, 3.2vw, 1.6rem);
-  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #7A2E2F;
+  margin: 0;
+  font-weight: 600;
+}
+
+.curved-glimpse-names {
+  font-family: 'Cinzel', 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  letter-spacing: 0.08em;
+  color: #5C1A1B;
+  margin: 0.15rem 0;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.curved-glimpse-date {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #5C1A1B;
   margin: 0;
   font-weight: 600;
 }
 
-.curved-glimpse-date {
+.curved-glimpse-venue {
   font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #7A2E2F;
+  color: #8C6E2E;
   margin: 0;
 }
 
@@ -170,7 +205,10 @@
   height: 50.3%;
   clip-path: polygon(0 100%, 100% 100%, 50% 0);
   -webkit-clip-path: polygon(0 100%, 100% 100%, 50% 0);
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
   z-index: 11;
+  will-change: transform;
 }
 
 /* Stationary left flap */
@@ -181,7 +219,10 @@
   height: 100%;
   clip-path: polygon(0 0, 0 100%, 100% 50%);
   -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
+  transform-origin: left center;
+  transform-style: preserve-3d;
   z-index: 12;
+  will-change: transform;
 }
 
 /* Stationary right flap */
@@ -192,34 +233,105 @@
   height: 100%;
   clip-path: polygon(100% 0, 100% 100%, 0 50%);
   -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  transform-origin: right center;
+  transform-style: preserve-3d;
   z-index: 13;
+  will-change: transform;
 }
 
 /* ===================================================
-   TOP FLAP (Realistic Curved Paper Bend)
+   TOP FLAP (Realistic 3D Cardstock Fold)
    =================================================== */
 
-.curved-flap.flap-top-curved {
+.flap-dynamic-shadow {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 50.4%;
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.7));
-  z-index: 50;
-  overflow: visible;
-  transform-style: preserve-3d;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  filter: blur(14px);
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 45;
+  will-change: transform, opacity, filter;
 }
 
-/* Wax seal anchor that moves dynamically with the curving paper tip */
+.curved-flap.flap-top-3d {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50.4%;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 50;
+  overflow: visible;
+  will-change: transform;
+}
+
+/* Front face of top flap (facing viewer when closed) */
+.flap-face-front {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.65));
+}
+
+/* Back face of top flap (inner lining, revealed when folded back 180deg) */
+.flap-face-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* Triangular paper body */
+.flap-paper-body {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 50% 100%);
+  overflow: hidden;
+}
+
+/* Specular lighting sheen across the paper as it tilts in 3D */
+.flap-shine-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 20%, rgba(255, 240, 200, 0.45) 50%, transparent 80%);
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  will-change: transform, opacity;
+}
+
+/* Wax seal anchor attached to the tip of the flap */
 .curved-seal-anchor {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%) translateZ(15px);
+  transform: translate(-50%, -50%) translateZ(12px);
   transform-style: preserve-3d;
   z-index: 100;
   pointer-events: auto;
-  will-change: top, transform;
+  will-change: transform;
 }
 
 .curved-seal-medallion {
@@ -239,6 +351,7 @@
   justify-content: center;
   transform-style: preserve-3d;
   will-change: transform;
+  cursor: pointer;
 }
 
 .curved-seal-medallion:hover {
@@ -310,7 +423,7 @@
 }
 
 /* ===================================================
-   REALISTIC OPTICAL LIGHTING EMITTING UNDER CURVE
+   REALISTIC OPTICAL LIGHTING EMITTING UNDER OPEN FLAP
    =================================================== */
 
 .curved-light-container {
@@ -329,7 +442,7 @@
   opacity: 1;
 }
 
-/* 1. Volumetric light spill pouring out through the curved arch */
+/* 1. Volumetric light spill pouring out through the opened arch */
 .curved-light-spill {
   position: absolute;
   top: 42%;
