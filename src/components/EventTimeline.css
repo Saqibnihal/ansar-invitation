@@ -1,0 +1,224 @@
+/* ============================================
+   EVENT TIMELINE SECTION
+   ============================================ */
+
+.events-section {
+  padding: 6rem 1.5rem;
+  background: radial-gradient(ellipse at 50% 25%, rgba(42, 10, 14, 0.65) 0%, rgba(20, 4, 7, 0.74) 65%, rgba(12, 2, 4, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.events-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 35%, rgba(201, 168, 76, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 88% 65%, rgba(145, 26, 34, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(201, 168, 76, 0.06) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.events-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* Shared section styles */
+.section-ornament {
+  display: block;
+  color: rgba(201, 168, 76, 0.4);
+  font-size: 0.7rem;
+  letter-spacing: 0.6em;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  color: #E8D08C;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1rem;
+  color: rgba(232, 208, 140, 0.5);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.3), transparent);
+  transform: translateX(-50%);
+}
+
+/* Timeline items */
+.timeline-item {
+  position: relative;
+  display: flex;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.timeline-item.left {
+  justify-content: flex-start;
+  padding-right: calc(50% + 2rem);
+}
+
+.timeline-item.right {
+  justify-content: flex-end;
+  padding-left: calc(50% + 2rem);
+}
+
+/* Timeline dot */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #5C1A1B, #3D1112);
+  border: 2px solid rgba(201, 168, 76, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.15);
+  z-index: 2;
+}
+
+.dot-icon {
+  font-size: 1rem;
+}
+
+/* Timeline card */
+.timeline-card {
+  background: linear-gradient(145deg, rgba(92, 26, 27, 0.22) 0%, rgba(61, 17, 18, 0.35) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 14px;
+  padding: 1.6rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3), 0 0 25px rgba(201, 168, 76, 0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-card:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(201, 168, 76, 0.12);
+  transform: translateY(-2px);
+}
+
+.timeline-card-header {
+  margin-bottom: 0.8rem;
+}
+
+.event-name {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1.3rem;
+  color: #E8D08C;
+  font-weight: 500;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+.event-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.event-date,
+.event-time {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.85rem;
+  color: rgba(232, 208, 140, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.event-divider {
+  color: rgba(201, 168, 76, 0.3);
+  font-size: 0.5rem;
+}
+
+.event-description {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.9rem;
+  color: rgba(253, 248, 240, 0.6);
+  line-height: 1.7;
+  margin: 0 0 0.8rem;
+}
+
+.event-venue {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.85rem;
+  color: rgba(201, 168, 76, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.venue-icon {
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   RESPONSIVE - Mobile stacked layout
+   ============================================ */
+
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    padding-left: 60px;
+    padding-right: 0;
+    justify-content: flex-start;
+  }
+
+  .timeline-dot {
+    left: 20px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .timeline-card {
+    padding: 1.2rem;
+  }
+
+  .event-name {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-section {
+    padding: 4rem 1rem;
+  }
+
+  .timeline-item {
+    margin-bottom: 2rem;
+  }
+}

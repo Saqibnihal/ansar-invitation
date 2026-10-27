@@ -1,0 +1,702 @@
+/* ============================================
+   INVITATION CARD SECTION
+   ============================================ */
+
+.invitation-card-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1.5rem 5.5rem;
+  background: radial-gradient(ellipse at center, rgba(38, 10, 13, 0.6) 0%, rgba(18, 4, 6, 0.85) 85%);
+  position: relative;
+}
+
+.card-outer-shadow {
+  position: relative;
+  max-width: 620px;
+  width: 100%;
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.7))
+          drop-shadow(0 0 55px rgba(201, 168, 76, 0.16));
+}
+
+.invitation-card {
+  position: relative;
+  width: 100%;
+  background: radial-gradient(ellipse at top, #FFFDF8 0%, #FAF2E4 50%, #F0E2C8 100%);
+  border-radius: 12px;
+  padding: 4.2rem 3rem;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  box-shadow:
+    inset 0 0 90px rgba(201, 168, 76, 0.1),
+    inset 0 0 20px rgba(92, 26, 27, 0.04),
+    0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Moving subtle gold light sweep sheen */
+.invitation-card::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(232, 200, 122, 0.25) 50%,
+    transparent 56%
+  );
+  transform: rotate(-12deg);
+  pointer-events: none;
+  z-index: 2;
+  animation: cardLightSweep 11s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes cardLightSweep {
+  0%, 100% {
+    transform: translateX(-110%) rotate(-12deg);
+  }
+  35%, 65% {
+    transform: translateX(110%) rotate(-12deg);
+  }
+}
+
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Inner gold hot foil border */
+.card-gold-inner-rim {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card-gold-inner-rim::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed rgba(201, 168, 76, 0.35);
+  border-radius: 5px;
+}
+
+/* Royal Gold Filigree Corners */
+.card-corner {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 2px rgba(92, 26, 27, 0.15));
+}
+
+.corner-tl {
+  top: 16px;
+  left: 16px;
+}
+
+.corner-tr {
+  top: 16px;
+  right: 16px;
+  transform: scaleX(-1);
+}
+
+.corner-bl {
+  bottom: 16px;
+  left: 16px;
+  transform: scaleY(-1);
+}
+
+.corner-br {
+  bottom: 16px;
+  right: 16px;
+  transform: scale(-1, -1);
+}
+
+/* Floral border watermark */
+.card-floral-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.14;
+  mix-blend-mode: multiply;
+}
+
+.floral-border-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card content */
+.card-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+/* Sacred Bismillah Calligraphy */
+.card-bismillah-wrapper {
+  margin-top: 0.1rem;
+  margin-bottom: -0.5rem;
+}
+
+.card-bismillah {
+  font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Georgia', serif;
+  font-size: clamp(2rem, 5.5vw, 2.7rem);
+  background: linear-gradient(135deg, #FFE8B0 0%, #D8B048 35%, #AD872C 70%, #E8C87A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(160, 120, 40, 0.35));
+  display: inline-block;
+  line-height: 1.2;
+  user-select: none;
+}
+
+/* Ornamental dividers */
+.ornamental-divider {
+  color: #C9A84C;
+  font-size: 1.1rem;
+  letter-spacing: 0.4em;
+  opacity: 0.88;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ornament-center {
+  font-size: 1.25rem;
+  color: #A68A3E;
+}
+
+.gold-sparkle {
+  color: #C9A84C;
+  font-size: 0.85rem;
+  animation: shimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.45; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+.ornamental-divider.bottom {
+  font-size: 1.5rem;
+  margin-top: 0.4rem;
+  opacity: 0.7;
+}
+
+/* Headline */
+.card-headline {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.88rem;
+  color: #7A2E2F;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Couple Names Section */
+.couple-names-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.2rem 0;
+}
+
+.name-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.bride-name,
+.groom-name {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-size: clamp(3.2rem, 8.5vw, 4.4rem);
+  color: #5C1A1B;
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0;
+  text-shadow:
+    0 1px 2px rgba(92, 26, 27, 0.2),
+    0 0 25px rgba(201, 168, 76, 0.15);
+}
+
+.full-name-subtitle {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.82rem;
+  color: #7A2E2F;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0.05rem 0 0;
+}
+
+.parent-names {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.86rem;
+  color: rgba(95, 62, 64, 0.88);
+  letter-spacing: 0.04em;
+  font-style: italic;
+  margin: 0.15rem 0 0;
+  font-weight: 500;
+}
+
+.ampersand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 170px;
+  margin: 0.25rem 0;
+}
+
+.ampersand-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.6), transparent);
+}
+
+.ampersand-crest {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.crest-sparkle {
+  color: #C9A84C;
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+.ampersand {
+  font-family: 'Great Vibes', 'Cormorant Garamond', cursive;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  background: linear-gradient(135deg, #7A1E20 0%, #C9A84C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+/* Invitation text */
+.invitation-text {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1.04rem;
+  color: #5f3e40;
+  letter-spacing: 0.08em;
+  line-height: 1.85;
+  font-style: italic;
+  white-space: pre-line;
+  max-width: 440px;
+  margin: 0;
+}
+
+/* Decorative line */
+.decorative-line {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 280px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+}
+
+.line-ornament {
+  color: #C9A84C;
+  font-size: 0.55rem;
+}
+
+/* ============================================
+   ROYAL DATE & VENUE HIGHLIGHT BADGE
+   ============================================ */
+
+.date-venue-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(145deg, rgba(255, 253, 248, 0.96) 0%, rgba(247, 237, 220, 0.92) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  border-radius: 10px;
+  padding: 1.15rem 1.8rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow:
+    0 8px 25px rgba(92, 26, 27, 0.08),
+    inset 0 0 25px rgba(201, 168, 76, 0.08);
+  position: relative;
+}
+
+.date-venue-badge::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(201, 168, 76, 0.3);
+  border-radius: 7px;
+  pointer-events: none;
+}
+
+.badge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.badge-flourish {
+  color: #C9A84C;
+  font-size: 0.7rem;
+}
+
+.badge-day {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7A2E2F;
+}
+
+.badge-main-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0.3rem 0;
+}
+
+.badge-date-highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.badge-date-number {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 2.85rem;
+  font-weight: 700;
+  color: #5C1A1B;
+  line-height: 1;
+}
+
+.badge-date-sub {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.badge-month {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #5C1A1B;
+  line-height: 1.1;
+}
+
+.badge-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  color: #7A2E2F;
+  letter-spacing: 0.06em;
+}
+
+.badge-divider-vert {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.65), transparent);
+}
+
+.badge-time-highlight {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.badge-time-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: #8C6E2E;
+  font-weight: 600;
+}
+
+.badge-time-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #5C1A1B;
+  line-height: 1.1;
+}
+
+.badge-venue-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  border-top: 1px solid rgba(201, 168, 76, 0.28);
+  padding-top: 0.7rem;
+}
+
+.badge-venue-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.94rem;
+  color: #5f3e40;
+}
+
+.badge-venue-icon {
+  font-size: 0.95rem;
+}
+
+.badge-venue-item.lunch-item {
+  font-size: 0.9rem;
+  color: #7A2E2F;
+}
+
+/* Romantic message */
+.romantic-message {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.96rem;
+  color: #5f3e40;
+  line-height: 1.8;
+  font-style: italic;
+  max-width: 440px;
+  padding: 0 0.5rem;
+  margin: 0;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.card-actions {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.card-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.calendar-btn {
+  background: rgba(92, 26, 27, 0.08);
+  color: #5C1A1B;
+  border: 1px solid rgba(201, 168, 76, 0.55);
+}
+
+.calendar-btn:hover {
+  background: rgba(92, 26, 27, 0.16);
+  border-color: #C9A84C;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(92, 26, 27, 0.15);
+}
+
+.venue-btn {
+  background: linear-gradient(135deg, #5C1A1B 0%, #7A2E2F 100%);
+  color: #FFFDF8;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  box-shadow: 0 4px 15px rgba(92, 26, 27, 0.25);
+}
+
+.venue-btn:hover {
+  background: linear-gradient(135deg, #7A2E2F 0%, #942528 100%);
+  border-color: #E8C87A;
+  box-shadow: 0 6px 20px rgba(92, 26, 27, 0.35);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+.btn-arrow {
+  font-size: 0.95rem;
+  color: #E8C87A;
+  transition: transform 0.2s ease;
+}
+
+.venue-btn:hover .btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+.dropdown-caret {
+  font-size: 0.75rem;
+  color: #C9A84C;
+}
+
+.calendar-dropdown-wrapper {
+  position: relative;
+}
+
+.calendar-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #FFFDF8;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 20;
+  min-width: 215px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.95rem;
+  color: #5C1A1B;
+  background: none;
+  border: none;
+  padding: 0.8rem 1.1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  width: 100%;
+}
+
+.cal-item-icon {
+  font-size: 0.9rem;
+}
+
+.calendar-dropdown-item:hover {
+  background: rgba(201, 168, 76, 0.15);
+  color: #3D1112;
+}
+
+.calendar-dropdown-item:not(:last-child) {
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 580px) {
+  .invitation-card-section {
+    padding: 3.5rem 1rem 4.5rem;
+  }
+
+  .invitation-card {
+    padding: 3rem 1.4rem;
+    border-radius: 10px;
+  }
+
+  .card-corner {
+    width: 38px;
+    height: 38px;
+  }
+
+  .corner-tl {
+    top: 14px;
+    left: 14px;
+  }
+
+  .corner-tr {
+    top: 14px;
+    right: 14px;
+  }
+
+  .corner-bl {
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .corner-br {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .card-content {
+    gap: 0.95rem;
+  }
+
+  .date-venue-badge {
+    padding: 1rem 1.1rem;
+  }
+
+  .badge-main-date {
+    gap: 1rem;
+  }
+
+  .badge-date-number {
+    font-size: 2.4rem;
+  }
+
+  .badge-time-val {
+    font-size: 1.15rem;
+  }
+
+  .badge-venue-item {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .badge-venue-item.lunch-item {
+    font-size: 0.82rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .calendar-dropdown-wrapper,
+  .card-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .calendar-dropdown-menu {
+    width: 100%;
+  }
+}
+

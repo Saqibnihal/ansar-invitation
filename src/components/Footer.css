@@ -1,0 +1,113 @@
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  position: relative;
+  z-index: 2;
+  padding: 5rem 1.5rem 4rem;
+  background: radial-gradient(ellipse at 50% 0%, rgba(42, 11, 14, 0.65) 0%, rgba(18, 4, 6, 0.76) 60%, rgba(10, 2, 4, 0.84) 100%);
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 76, 0.22);
+}
+
+.footer-content {
+  position: relative;
+  z-index: 3;
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.footer-ornament {
+  color: rgba(201, 168, 76, 0.5);
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
+}
+
+.footer-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+  color: #E8D08C;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
+  line-height: 1.3;
+}
+
+.footer-date {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.9rem;
+  color: rgba(232, 208, 140, 0.6);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.footer-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+  margin: 0.5rem 0;
+}
+
+.footer-message {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1rem;
+  color: rgba(253, 248, 240, 0.45);
+  font-style: italic;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.footer-hashtag {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.95rem;
+  color: rgba(201, 168, 76, 0.55);
+  letter-spacing: 0.12em;
+  margin: 0.5rem 0 0.5rem;
+}
+
+.replay-envelope-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(232, 208, 140, 0.7);
+  background: rgba(92, 26, 27, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.8rem 0 0.5rem;
+}
+
+.replay-envelope-btn:hover {
+  background: rgba(92, 26, 27, 0.35);
+  border-color: rgba(201, 168, 76, 0.6);
+  color: #E8D08C;
+  transform: translateY(-1px);
+}
+
+.replay-icon {
+  font-size: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.replay-envelope-btn:hover .replay-icon {
+  transform: rotate(-180deg);
+}
+
+.footer-credit {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.8rem;
+  color: rgba(253, 248, 240, 0.2);
+  margin: 1.5rem 0 0;
+  letter-spacing: 0.05em;
+}

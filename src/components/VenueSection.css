@@ -1,0 +1,185 @@
+/* ============================================
+   VENUE SECTION
+   ============================================ */
+
+.venue-section {
+  padding: 6rem 1.5rem;
+  background: radial-gradient(ellipse at 50% 30%, rgba(46, 12, 16, 0.65) 0%, rgba(18, 4, 6, 0.74) 65%, rgba(10, 2, 4, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.venue-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 30%, rgba(201, 168, 76, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 15% 75%, rgba(145, 26, 34, 0.14) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.venue-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.venue-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+/* Grid layout */
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Venue photo */
+.venue-photo-wrapper {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+}
+
+.venue-photo {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.venue-photo-wrapper:hover .venue-photo {
+  transform: scale(1.05);
+}
+
+.venue-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(13, 4, 4, 0.4) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Venue details */
+.venue-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: linear-gradient(145deg, rgba(92, 26, 27, 0.2) 0%, rgba(46, 12, 16, 0.32) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 14px;
+  padding: 2.2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(201, 168, 76, 0.04);
+}
+
+.venue-name {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+  color: #E8D08C;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.venue-address p {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1rem;
+  color: rgba(253, 248, 240, 0.6);
+  line-height: 1.7;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.venue-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.5), transparent);
+}
+
+.venue-directions {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 0.9rem;
+  color: rgba(253, 248, 240, 0.45);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Map link */
+.venue-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1rem;
+  color: #C9A84C;
+  text-decoration: none;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  letter-spacing: 0.08em;
+}
+
+.venue-map-link:hover {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.5);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.1);
+}
+
+.map-icon {
+  font-size: 1rem;
+}
+
+.link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.venue-map-link:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .venue-photo {
+    height: 250px;
+  }
+
+  .venue-details {
+    text-align: center;
+    align-items: center;
+  }
+
+  .venue-divider {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .venue-section {
+    padding: 4rem 1rem;
+  }
+
+  .venue-photo {
+    height: 200px;
+  }
+}
