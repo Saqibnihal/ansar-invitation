@@ -71,7 +71,9 @@
   max-height: 840px;
   margin: auto;
   transform-style: preserve-3d;
-  perspective: 1400px;
+  /* perspective is inherited from .curved-quad-envelope-viewport parent;
+     avoid re-declaring it here — nested perspective causes iOS rendering bugs
+     where top/bottom flaps compute different effective depths. */
   z-index: 10;
   will-change: transform, opacity;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 50px rgba(201, 168, 76, 0.15);
@@ -82,7 +84,6 @@
     max-width: 100%;
     max-height: 100%;
     box-shadow: none;
-    perspective: 2000px;
   }
 }
 
@@ -198,7 +199,10 @@
   pointer-events: none;
 }
 
-/* Stationary bottom flap */
+/* Stationary bottom flap
+   NOTE: iOS Safari flattens 3D transforms when clip-path is on the same element
+   as transform-style: preserve-3d. We remove preserve-3d from stationary flaps
+   (they don't need it — only the top flap has front/back faces). */
 .curved-flap.flap-bottom {
   bottom: 0;
   left: 0;
@@ -207,7 +211,6 @@
   clip-path: polygon(0 100%, 100% 100%, 50% 0);
   -webkit-clip-path: polygon(0 100%, 100% 100%, 50% 0);
   transform-origin: bottom center;
-  transform-style: preserve-3d;
   z-index: 11;
   will-change: transform;
 }
@@ -221,7 +224,6 @@
   clip-path: polygon(0 0, 0 100%, 100% 50%);
   -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
   transform-origin: left center;
-  transform-style: preserve-3d;
   z-index: 12;
   will-change: transform;
 }
@@ -235,7 +237,6 @@
   clip-path: polygon(100% 0, 100% 100%, 0 50%);
   -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
   transform-origin: right center;
-  transform-style: preserve-3d;
   z-index: 13;
   will-change: transform;
 }
@@ -267,9 +268,12 @@
   height: 50.4%;
   transform-origin: top center;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   z-index: 50;
   overflow: visible;
   will-change: transform;
+  /* Explicit initial rotation helps iOS compositing layer correctly */
+  transform: rotateX(0deg);
 }
 
 /* Front face of top flap (facing viewer when closed) */
@@ -281,7 +285,8 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
-  transform: rotateY(0deg);
+  -webkit-transform-style: preserve-3d;
+  transform: rotateX(0deg);
   filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.65));
 }
 
@@ -294,7 +299,10 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
-  transform: rotateY(180deg);
+  -webkit-transform-style: preserve-3d;
+  /* Must rotate around X-axis (not Y) since the top flap folds via rotateX.
+     iOS Safari requires the back face rotation axis to match the parent's rotation axis. */
+  transform: rotateX(180deg);
   filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5));
 }
 
