@@ -161,7 +161,7 @@ export default function QuadEnvelope({ onOpen }) {
       );
     }
 
-    // STEP 2: Crease tension release on the 3 stationary flaps (0.2s - 0.8s)
+    // STEP 2: Crease tension release on the 3 stationary flaps (0.22s - 0.92s)
     const isMobile = window.innerWidth < 768;
     if (leftFlapRef.current) {
       tl.to(
@@ -171,7 +171,7 @@ export default function QuadEnvelope({ onOpen }) {
           duration: 0.7,
           ease: 'power2.out',
         },
-        0.2
+        0.22
       );
     }
     if (rightFlapRef.current) {
@@ -182,22 +182,25 @@ export default function QuadEnvelope({ onOpen }) {
           duration: 0.7,
           ease: 'power2.out',
         },
-        0.2
+        0.22
       );
     }
     if (bottomFlapRef.current) {
+      // Negative rotateX tilts the top tip of bottom flap FORWARD (+Z)
+      // toward the user, rather than backward (-Z) slicing through the inner card.
       tl.to(
         bottomFlapRef.current,
         {
-          rotateX: isMobile ? 1 : 4,
+          rotateX: isMobile ? -1.5 : -4,
           duration: 0.7,
           ease: 'power2.out',
         },
-        0.2
+        0.22
       );
     }
 
-    // STEP 3: Top Flap folds back 180° along the top crease in 3D (0.2s - 1.45s)
+    // STEP 3: Top Flap folds back 180° along the top crease in 3D (0.22s - 1.47s)
+    // Starts exactly at 0.22s when Step 1 lift completes, preventing tween property collision.
     if (topFlapRef.current) {
       tl.to(
         topFlapRef.current,
@@ -206,7 +209,7 @@ export default function QuadEnvelope({ onOpen }) {
           duration: 1.25,
           ease: 'power2.inOut',
         },
-        0.2
+        0.22
       );
     }
 
@@ -233,18 +236,18 @@ export default function QuadEnvelope({ onOpen }) {
     }
 
     // Dynamic contact shadow under top flap expands, blurs, and dissipates
+    // Avoid animating CSS `filter` directly on iOS WebKit as it forces per-frame GPU reallocations.
     if (flapShadowRef.current) {
       tl.to(
         flapShadowRef.current,
         {
           y: 45,
-          scaleX: 1.05,
+          scaleX: 1.1,
           opacity: 0,
-          filter: 'blur(35px)',
           duration: 0.65,
           ease: 'power2.in',
         },
-        0.2
+        0.22
       );
     }
 

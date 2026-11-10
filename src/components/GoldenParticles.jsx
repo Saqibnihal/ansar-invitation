@@ -60,6 +60,14 @@ export default function GoldenParticles({ active, onComplete }) {
   }, []);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas && (!canvas.width || !canvas.height)) {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+  }, []);
+
+  useEffect(() => {
     if (!active) return;
 
     const canvas = canvasRef.current;
@@ -145,8 +153,6 @@ export default function GoldenParticles({ active, onComplete }) {
     };
   }, [active, createParticles, onComplete]);
 
-  if (!active) return null;
-
   return (
     <canvas
       ref={canvasRef}
@@ -158,6 +164,8 @@ export default function GoldenParticles({ active, onComplete }) {
         height: '100%',
         pointerEvents: 'none',
         zIndex: 1000,
+        opacity: active ? 1 : 0,
+        visibility: active ? 'visible' : 'hidden',
       }}
       aria-hidden="true"
     />

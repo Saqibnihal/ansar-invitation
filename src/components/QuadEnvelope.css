@@ -11,11 +11,13 @@
   background: transparent;
   overflow: hidden;
   perspective: 1400px;
+  -webkit-perspective: 1400px;
   z-index: 999;
   cursor: pointer;
   touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Background dynamic particles & ambient glow */
@@ -95,9 +97,13 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient(ellipse at center, #350b0e 0%, #1c0507 65%, #0d0203 100%);
+  transform: translateZ(-2px);
+  -webkit-transform: translateZ(-2px);
   z-index: 4;
   perspective: 1000px;
+  -webkit-perspective: 1000px;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 .curved-glimpse-card {
@@ -217,6 +223,8 @@
   width: 100%;
   height: 50.3%;
   transform-origin: bottom center;
+  transform: translateZ(1px);
+  -webkit-transform: translateZ(1px);
   z-index: 11;
   will-change: transform;
 }
@@ -229,7 +237,6 @@
   clip-path: polygon(0 100%, 100% 100%, 50% 0);
   -webkit-clip-path: polygon(0 100%, 100% 100%, 50% 0);
   overflow: hidden;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
 }
 
 /* Stationary left flap */
@@ -239,6 +246,8 @@
   width: 50.3%;
   height: 100%;
   transform-origin: left center;
+  transform: translateZ(2px);
+  -webkit-transform: translateZ(2px);
   z-index: 12;
   will-change: transform;
 }
@@ -251,7 +260,6 @@
   clip-path: polygon(0 0, 0 100%, 100% 50%);
   -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
   overflow: hidden;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
 }
 
 /* Stationary right flap */
@@ -261,6 +269,8 @@
   width: 50.3%;
   height: 100%;
   transform-origin: right center;
+  transform: translateZ(2px);
+  -webkit-transform: translateZ(2px);
   z-index: 13;
   will-change: transform;
 }
@@ -273,7 +283,6 @@
   clip-path: polygon(100% 0, 100% 100%, 0 50%);
   -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
   overflow: hidden;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
 }
 
 /* ===================================================
@@ -293,7 +302,7 @@
   transform-origin: top center;
   pointer-events: none;
   z-index: 45;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 .curved-flap.flap-top-3d {
@@ -307,8 +316,8 @@
   z-index: 50;
   overflow: visible;
   will-change: transform;
-  /* Explicit initial rotation helps iOS compositing layer correctly */
-  transform: rotateX(0deg);
+  transform: translateZ(3px);
+  -webkit-transform: translateZ(3px);
 }
 
 /* Front face of top flap (facing viewer when closed) */
@@ -321,8 +330,8 @@
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transform: rotateX(0deg);
-  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.65));
+  transform: rotateX(0deg) translateZ(1px);
+  -webkit-transform: rotateX(0deg) translateZ(1px);
 }
 
 /* Back face of top flap (inner lining, revealed when folded back 180deg) */
@@ -335,10 +344,8 @@
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  /* Must rotate around X-axis (not Y) since the top flap folds via rotateX.
-     iOS Safari requires the back face rotation axis to match the parent's rotation axis. */
-  transform: rotateX(180deg);
-  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.5));
+  transform: rotateX(180deg) translateZ(1px);
+  -webkit-transform: rotateX(180deg) translateZ(1px);
 }
 
 /* Triangular paper body */
@@ -389,17 +396,23 @@
     0 12px 35px rgba(0, 0, 0, 0.75),
     0 0 45px rgba(201, 168, 76, 0.4),
     inset 0 0 20px rgba(0, 0, 0, 0.35);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   will-change: transform;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.curved-seal-medallion:hover {
-  transform: scale(1.06);
+@media (hover: hover) {
+  .curved-seal-medallion {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .curved-seal-medallion:hover {
+    transform: scale(1.06);
+  }
 }
 
 .curved-medallion-photo {
