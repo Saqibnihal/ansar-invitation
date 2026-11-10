@@ -178,8 +178,14 @@
 
 .curved-flap {
   position: absolute;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
+  /* NOTE: Do NOT set transform-style: preserve-3d here.
+     Only the top flap needs preserve-3d (for front/back faces).
+     Setting it on stationary flaps that also use clip-path causes iOS Safari
+     to flatten the 3D context and render the top/bottom quads at different depths. */
+  /* NOTE: filter (including drop-shadow) is intentionally NOT placed here because
+     iOS Safari flattens transform-style: preserve-3d when any filter is set on
+     the element or its ancestors. Shadows are applied per-flap using box-shadow
+     or on children that don't need preserve-3d. */
 }
 
 .curved-flap-svg {
@@ -200,19 +206,30 @@
 }
 
 /* Stationary bottom flap
-   NOTE: iOS Safari flattens 3D transforms when clip-path is on the same element
-   as transform-style: preserve-3d. We remove preserve-3d from stationary flaps
-   (they don't need it — only the top flap has front/back faces). */
+   NOTE: Outer element receives GSAP rotateX animation.
+   It must NOT have clip-path, as iOS WebKit vanishes any element
+   that combines clip-path with a 3D transform.
+   The clip-path is instead on the inner .flap-bottom-body child,
+   matching the working pattern of .flap-top-3d / .flap-paper-body. */
 .curved-flap.flap-bottom {
   bottom: 0;
   left: 0;
   width: 100%;
   height: 50.3%;
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
-  -webkit-clip-path: polygon(0 100%, 100% 100%, 50% 0);
   transform-origin: bottom center;
   z-index: 11;
   will-change: transform;
+}
+
+.flap-bottom-body {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 100%, 100% 100%, 50% 0);
+  -webkit-clip-path: polygon(0 100%, 100% 100%, 50% 0);
+  overflow: hidden;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
 }
 
 /* Stationary left flap */
@@ -221,11 +238,20 @@
   left: 0;
   width: 50.3%;
   height: 100%;
-  clip-path: polygon(0 0, 0 100%, 100% 50%);
-  -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
   transform-origin: left center;
   z-index: 12;
   will-change: transform;
+}
+
+.flap-left-body {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+  -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
+  overflow: hidden;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
 }
 
 /* Stationary right flap */
@@ -234,11 +260,20 @@
   right: 0;
   width: 50.3%;
   height: 100%;
-  clip-path: polygon(100% 0, 100% 100%, 0 50%);
-  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
   transform-origin: right center;
   z-index: 13;
   will-change: transform;
+}
+
+.flap-right-body {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  overflow: hidden;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
 }
 
 /* ===================================================

@@ -395,114 +395,124 @@ export default function QuadEnvelope({ onOpen }) {
           </div>
         </div>
 
-        {/* FLAP 3: BOTTOM FLAP */}
+        {/* FLAP 3: BOTTOM FLAP
+             The outer wrapper receives GSAP transforms (rotateX) and must NOT
+             have clip-path — iOS WebKit vanishes elements when clip-path and
+             3D transforms coexist on the same element. The inner .flap-bottom-body
+             carries the clip-path instead (same pattern as the top flap). */}
         <div className="curved-flap flap-bottom" ref={bottomFlapRef} aria-hidden="true">
-          <div className="curved-paper-texture" />
-          <svg className="curved-flap-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="foilGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#FFF2D1" />
-                <stop offset="35%" stopColor="#E8C87A" />
-                <stop offset="70%" stopColor="#C9A84C" />
-                <stop offset="100%" stopColor="#8C6E2E" />
-              </linearGradient>
-              <linearGradient id="burgundyGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#6E1B1D" />
-                <stop offset="50%" stopColor="#541516" />
-                <stop offset="100%" stopColor="#3C0E0F" />
-              </linearGradient>
-              <linearGradient id="curvedPaperGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#7E1F22" />
-                <stop offset="45%" stopColor="#5C1618" />
-                <stop offset="100%" stopColor="#3F0E10" />
-              </linearGradient>
-              <linearGradient id="innerLinerGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#2A090B" />
-                <stop offset="50%" stopColor="#461113" />
-                <stop offset="100%" stopColor="#5E1719" />
-              </linearGradient>
-            </defs>
-            <polygon points="0,500 1000,500 500,-2" fill="url(#burgundyGrad)" />
-            <polygon
-              points="20,490 980,490 500,20"
-              fill="none"
-              stroke="url(#foilGrad)"
-              strokeWidth="2"
-              opacity="0.8"
-            />
-            <polygon
-              points="40,478 960,478 500,45"
-              fill="none"
-              stroke="url(#foilGrad)"
-              strokeWidth="1.2"
-              strokeDasharray="6,4"
-              opacity="0.55"
-            />
-            <text
-              x="500"
-              y="380"
-              textAnchor="middle"
-              fill="url(#foilGrad)"
-              fontSize="22"
-              fontFamily="Georgia, serif"
-              opacity="0.8"
-              letterSpacing="5"
-            >
-              ✦ JANUARY 3, 2027 • ERUVADI ✦
-            </text>
-          </svg>
+          <div className="flap-bottom-body">
+            <div className="curved-paper-texture" />
+            <svg className="curved-flap-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="foilGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#FFF2D1" />
+                  <stop offset="35%" stopColor="#E8C87A" />
+                  <stop offset="70%" stopColor="#C9A84C" />
+                  <stop offset="100%" stopColor="#8C6E2E" />
+                </linearGradient>
+                <linearGradient id="burgundyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#6E1B1D" />
+                  <stop offset="50%" stopColor="#541516" />
+                  <stop offset="100%" stopColor="#3C0E0F" />
+                </linearGradient>
+                <linearGradient id="curvedPaperGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#7E1F22" />
+                  <stop offset="45%" stopColor="#5C1618" />
+                  <stop offset="100%" stopColor="#3F0E10" />
+                </linearGradient>
+                <linearGradient id="innerLinerGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#2A090B" />
+                  <stop offset="50%" stopColor="#461113" />
+                  <stop offset="100%" stopColor="#5E1719" />
+                </linearGradient>
+              </defs>
+              <polygon points="0,500 1000,500 500,-2" fill="url(#burgundyGrad)" />
+              <polygon
+                points="20,490 980,490 500,20"
+                fill="none"
+                stroke="url(#foilGrad)"
+                strokeWidth="2"
+                opacity="0.8"
+              />
+              <polygon
+                points="40,478 960,478 500,45"
+                fill="none"
+                stroke="url(#foilGrad)"
+                strokeWidth="1.2"
+                strokeDasharray="6,4"
+                opacity="0.55"
+              />
+              <text
+                x="500"
+                y="380"
+                textAnchor="middle"
+                fill="url(#foilGrad)"
+                fontSize="22"
+                fontFamily="Georgia, serif"
+                opacity="0.8"
+                letterSpacing="5"
+              >
+                ✦ JANUARY 3, 2027 • ERUVADI ✦
+              </text>
+            </svg>
+          </div>
         </div>
 
         {/* FLAP 4: LEFT FLAP */}
         <div className="curved-flap flap-left" ref={leftFlapRef} aria-hidden="true">
-          <div className="curved-paper-texture" />
-          <svg className="curved-flap-svg" viewBox="0 0 500 1000" preserveAspectRatio="none">
-            <polygon points="0,0 0,1000 502,500" fill="url(#burgundyGrad)" />
-            <polygon
-              points="10,20 10,980 480,500"
-              fill="none"
-              stroke="url(#foilGrad)"
-              strokeWidth="2"
-              opacity="0.8"
-            />
-            <polygon
-              points="22,40 22,960 455,500"
-              fill="none"
-              stroke="url(#foilGrad)"
-              strokeWidth="1.2"
-              strokeDasharray="6,4"
-              opacity="0.55"
-            />
-            <text x="70" y="500" textAnchor="middle" fill="url(#foilGrad)" fontSize="28" opacity="0.7">
-              ❦
-            </text>
-          </svg>
+          <div className="flap-left-body">
+            <div className="curved-paper-texture" />
+            <svg className="curved-flap-svg" viewBox="0 0 500 1000" preserveAspectRatio="none">
+              <polygon points="0,0 0,1000 502,500" fill="url(#burgundyGrad)" />
+              <polygon
+                points="10,20 10,980 480,500"
+                fill="none"
+                stroke="url(#foilGrad)"
+                strokeWidth="2"
+                opacity="0.8"
+              />
+              <polygon
+                points="22,40 22,960 455,500"
+                fill="none"
+                stroke="url(#foilGrad)"
+                strokeWidth="1.2"
+                strokeDasharray="6,4"
+                opacity="0.55"
+              />
+              <text x="70" y="500" textAnchor="middle" fill="url(#foilGrad)" fontSize="28" opacity="0.7">
+                ❦
+              </text>
+            </svg>
+          </div>
         </div>
 
         {/* FLAP 2: RIGHT FLAP */}
         <div className="curved-flap flap-right" ref={rightFlapRef} aria-hidden="true">
-          <div className="curved-paper-texture" />
-          <svg className="curved-flap-svg" viewBox="0 0 500 1000" preserveAspectRatio="none">
-            <polygon points="500,0 500,1000 -2,500" fill="url(#burgundyGrad)" />
-            <polygon
-              points="490,20 490,980 20,500"
-              fill="none"
-              stroke="url(#foilGrad)"
-              strokeWidth="2"
-              opacity="0.8"
-            />
-            <polygon
-              points="478,40 478,960 45,500"
-              fill="none"
-              stroke="url(#foilGrad)"
-              strokeWidth="1.2"
-              strokeDasharray="6,4"
-              opacity="0.55"
-            />
-            <text x="430" y="500" textAnchor="middle" fill="url(#foilGrad)" fontSize="28" opacity="0.7">
-              ❧
-            </text>
-          </svg>
+          <div className="flap-right-body">
+            <div className="curved-paper-texture" />
+            <svg className="curved-flap-svg" viewBox="0 0 500 1000" preserveAspectRatio="none">
+              <polygon points="500,0 500,1000 -2,500" fill="url(#burgundyGrad)" />
+              <polygon
+                points="490,20 490,980 20,500"
+                fill="none"
+                stroke="url(#foilGrad)"
+                strokeWidth="2"
+                opacity="0.8"
+              />
+              <polygon
+                points="478,40 478,960 45,500"
+                fill="none"
+                stroke="url(#foilGrad)"
+                strokeWidth="1.2"
+                strokeDasharray="6,4"
+                opacity="0.55"
+              />
+              <text x="430" y="500" textAnchor="middle" fill="url(#foilGrad)" fontSize="28" opacity="0.7">
+                ❧
+              </text>
+            </svg>
+          </div>
         </div>
 
         {/* DYNAMIC SHADOW UNDER TOP FLAP */}
