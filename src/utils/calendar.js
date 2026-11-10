@@ -12,11 +12,11 @@ export function generateIcsCalendar(weddingData) {
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Ahamed Ansar & Nowfiyath Basriya Wedding//EN',
+    'PRODID:-//Ahamed Ansar & Nowfi Basriya Wedding//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    'UID:wedding-Ahamed Ansar-Nowfiyath Basriya-2027@wedding.com',
+    'UID:wedding-Ahamed Ansar-Nowfi Basriya-2027@wedding.com',
     'DTSTAMP:20261017T000000Z',
     'DTSTART:20270103T060000Z',
     'DTEND:20270103T100000Z',

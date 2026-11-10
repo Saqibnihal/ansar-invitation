@@ -7,8 +7,8 @@ export const weddingData = {
   // Couple Information
   couple: {
     bride: {
-      firstName: 'Nowfiyath',
-      fullName: 'Nowfiyath Basriya',
+      firstName: 'Nowfi',
+      fullName: 'Nowfi Basriya',
       lastName: 'Basriya',
       initial: 'N',
       parents: 'Daughter of Mr. & Mrs. Nasurutheen',

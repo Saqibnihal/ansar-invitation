@@ -29,8 +29,10 @@
 }
 
 .footer-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+  font-family: 'Playfair Display', 'Cinzel', 'Georgia', serif;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: #E8D08C;
   margin: 0;
   text-shadow: 0 0 20px rgba(201, 168, 76, 0.25);

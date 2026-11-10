@@ -31,7 +31,7 @@ export default function Footer({ onReplayEnvelope }) {
           With gratitude and love, we thank you for being part of our story.
         </p>
 
-        <p className="footer-hashtag">#AhamedWedsNowfiyath</p>
+        <p className="footer-hashtag">#AhamedWedsNowfi</p>
 
         {onReplayEnvelope && (
           <button
@@ -44,7 +44,7 @@ export default function Footer({ onReplayEnvelope }) {
           </button>
         )}
 
-        <p className="footer-credit">Handcrafted with love for Ahamed Ansar & Nowfiyath Basriya</p>
+        <p className="footer-credit">Handcrafted with love for Ahamed Ansar & Nowfi Basriya</p>
       </motion.div>
     </footer>
   );

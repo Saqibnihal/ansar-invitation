@@ -77,8 +77,10 @@
 }
 
 .caption-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.5rem;
+  font-family: 'Playfair Display', 'Cinzel', 'Georgia', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   color: #E8D08C;
 }
 

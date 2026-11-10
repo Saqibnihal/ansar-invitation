@@ -52,8 +52,11 @@
 }
 
 .countdown-subtitle {
-  font-family: 'Great Vibes', 'Brush Script MT', cursive;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-family: 'Playfair Display', 'Cinzel', 'Georgia', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   color: #C9A84C;
 }
 
