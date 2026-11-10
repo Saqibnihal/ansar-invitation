@@ -45,6 +45,7 @@ export default function QuadEnvelope({ onOpen }) {
   const canvasRef = useRef(null);
   const envelopeWrapRef = useRef(null);
   const animFrameRef = useRef(null);
+  const touchedRef = useRef(false);
 
   // Optical bokeh motes floating in light beam
   useEffect(() => {
@@ -161,11 +162,12 @@ export default function QuadEnvelope({ onOpen }) {
     }
 
     // STEP 2: Crease tension release on the 3 stationary flaps (0.2s - 0.8s)
+    const isMobile = window.innerWidth < 768;
     if (leftFlapRef.current) {
       tl.to(
         leftFlapRef.current,
         {
-          rotateY: -7,
+          rotateY: isMobile ? -3 : -7,
           duration: 0.7,
           ease: 'power2.out',
         },
@@ -176,7 +178,7 @@ export default function QuadEnvelope({ onOpen }) {
       tl.to(
         rightFlapRef.current,
         {
-          rotateY: 7,
+          rotateY: isMobile ? 3 : 7,
           duration: 0.7,
           ease: 'power2.out',
         },
@@ -187,7 +189,7 @@ export default function QuadEnvelope({ onOpen }) {
       tl.to(
         bottomFlapRef.current,
         {
-          rotateX: 4,
+          rotateX: isMobile ? 1 : 4,
           duration: 0.7,
           ease: 'power2.out',
         },
@@ -323,11 +325,25 @@ export default function QuadEnvelope({ onOpen }) {
     }, 2.75);
   }, [phase, onOpen]);
 
+  // Prevent dual-fire of touch + click on mobile
+  const handleClick = useCallback(() => {
+    if (touchedRef.current) {
+      touchedRef.current = false;
+      return;
+    }
+    handleTouchOpen();
+  }, [handleTouchOpen]);
+
+  const handleTouchStart = useCallback(() => {
+    touchedRef.current = true;
+    handleTouchOpen();
+  }, [handleTouchOpen]);
+
   return (
     <div
       className="curved-quad-envelope-viewport"
-      onClick={handleTouchOpen}
-      onTouchStart={handleTouchOpen}
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
       role="button"
       tabIndex={0}
       aria-label="Quad wedding invitation envelope. Touch wax seal to open."
